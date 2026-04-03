@@ -107,7 +107,8 @@ function HeroSection() {
           >
             Rasa Hangat
             <br />
-            <span className="bg-gradient-to-r from-pink-600 to-purple-500 bg-clip-text text-transparent">
+            {/* Gradasi ungu dihapus, fokus pada palet pink */}
+            <span className="bg-gradient-to-r from-pink-700 to-pink-400 bg-clip-text text-transparent">
               Setiap Gigitan
             </span>
           </motion.h1>
@@ -163,20 +164,21 @@ function HeroSection() {
         </motion.div>
       </div>
 
-      <div className="hidden lg:flex absolute right-0 top-0 bottom-0 w-1/2 items-center justify-end z-10 pointer-events-none">
+      {/* RIGHT SIDE VISUALS */}
+      <div className="hidden lg:flex absolute right-0 top-0 bottom-0 w-1/2 items-center justify-center z-10 pointer-events-none pr-10">
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute top-[10%] right-[15%] w-24 h-24 rounded-full bg-gradient-to-br from-pink-200/40 to-purple-200/30"
+          className="absolute top-[15%] right-[20%] w-32 h-32 rounded-full bg-gradient-to-br from-pink-300/50 to-pink-100/50 blur-xl"
         />
         <motion.div
           animate={{ rotate: -360 }}
           transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-[20%] right-[40%] w-12 h-12 rounded-full bg-pink-200/30"
+          className="absolute bottom-[20%] right-[30%] w-20 h-20 rounded-full bg-pink-300/30 blur-lg"
         />
         {[
-          { style: { top: "15%", right: "30%" }, delay: 0 },
-          { style: { top: "65%", right: "45%" }, delay: 1.5 },
+          { style: { top: "20%", right: "35%" }, delay: 0 },
+          { style: { top: "70%", right: "45%" }, delay: 1.5 },
         ].map((sp, i) => (
           <motion.span
             key={i}
@@ -188,20 +190,41 @@ function HeroSection() {
           </motion.span>
         ))}
 
+        {/* MODERN IMAGE CONTAINER */}
         <motion.div
-          animate={{ y: [0, -15, -5, 0], rotate: [-1, 0.5, -0.5, -1] }}
-          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-          className="relative w-full max-w-[550px] xl:max-w-[700px] 2xl:max-w-[750px] flex justify-end pointer-events-auto"
+          animate={{ y: [0, -12, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="relative w-[75%] max-w-[420px] xl:max-w-[480px] pointer-events-auto"
         >
-          <Image
-            src="/toko.png"
-            alt="Jessyco Bakery App"
-            width={700}
-            height={900}
-            className="w-full h-auto object-contain object-right"
-            style={{ filter: "drop-shadow(-20px 32px 64px rgba(219,39,119,.15))" }}
-            priority
-          />
+          {/* Glassmorphism Card Wrapper */}
+          <div className="relative bg-white/70 backdrop-blur-md p-4 rounded-[2.5rem] border border-white/60 shadow-[0_24px_60px_rgba(219,39,119,0.12)] hover:shadow-[0_32px_80px_rgba(219,39,119,0.18)] transition-shadow duration-500 group">
+            
+            {/* Image Inner Wrapper */}
+            <div className="relative rounded-[2rem] overflow-hidden bg-gradient-to-b from-pink-50/50 to-pink-100/30 flex items-center justify-center aspect-[4/5]">
+              <Image
+                src="/toko.png"
+                alt="Jessyco Bakery App"
+                width={600}
+                height={750}
+                className="w-full h-full object-cover rounded-[2rem] group-hover:scale-105 transition-transform duration-700 ease-out"
+                priority
+              />
+            </div>
+
+            {/* Floating Modern Badge */}
+            <motion.div 
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              className="absolute -bottom-6 -left-8 bg-white px-5 py-3.5 rounded-2xl shadow-xl border border-pink-50 flex items-center gap-4"
+            >
+               <span className="text-3xl bg-pink-50 p-2 rounded-xl">🥐</span>
+               <div>
+                 <p className="text-[10px] text-stone-400 font-bold uppercase tracking-wider mb-0.5">Freshly Baked</p>
+                 <p className="text-sm font-serif font-bold text-pink-900 leading-none">Pilihan Terbaik</p>
+               </div>
+            </motion.div>
+
+          </div>
         </motion.div>
       </div>
     </section>
@@ -270,6 +293,7 @@ function TentangSection() {
               src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
               alt="Artisan Process" 
               fill
+              sizes="(max-width: 1024px) 100vw, 50vw" 
               className="object-cover grayscale-[30%] hover:grayscale-0 transition-all duration-1000"
             />
           </div>
@@ -396,13 +420,66 @@ function MenuSection() {
   );
 }
 
-/* ─── Footer ────────────────────────────────────────────── */
+/* ─── Footer Modern ─────────────────────────────────────── */
 function Footer() {
   return (
-    <footer className="bg-pink-950 text-pink-200/50 text-sm text-center py-12 px-8">
-      © {new Date().getFullYear()}{" "}
-      <strong className="font-serif text-pink-100/90 font-bold">Jessyco Bakery</strong>
-      {" "}· Semarang, Jawa Tengah. Dibuat dengan ♥ dan tepung terbaik.
+    <footer className="bg-[#4a1c2f] pt-20 pb-8 px-8 border-t-[6px] border-pink-400">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
+          
+          {/* Brand Col */}
+          <div className="lg:col-span-2">
+            <h3 className="font-serif text-4xl font-black text-white mb-6">Jessyco.</h3>
+            <p className="text-pink-100/70 text-sm font-light leading-relaxed max-w-sm mb-8">
+              Membawa kehangatan keluarga dalam setiap gigitan. Dibuat dengan tepung premium, mentega asli, dan banyak cinta di Semarang.
+            </p>
+            {/* Social Icons */}
+            <div className="flex gap-4">
+              {['Instagram', 'Facebook', 'TikTok'].map((social) => (
+                <a key={social} href="#" className="w-10 h-10 rounded-full bg-pink-900/50 flex items-center justify-center text-pink-200 hover:bg-pink-500 hover:text-white transition-all duration-300">
+                  <span className="text-[10px] uppercase font-bold">{social.substring(0,2)}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Links Col 1 */}
+          <div>
+            <h4 className="text-pink-400 font-bold uppercase tracking-[2px] text-xs mb-6">Navigasi</h4>
+            <ul className="space-y-4">
+              {['Beranda', 'Tentang Kami', 'Menu Produk', 'Hubungi Kami'].map((link) => (
+                <li key={link}>
+                  <a href="#" className="text-pink-100/70 hover:text-white text-sm transition-colors">{link}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Links Col 2 */}
+          <div>
+            <h4 className="text-pink-400 font-bold uppercase tracking-[2px] text-xs mb-6">Layanan</h4>
+            <ul className="space-y-4">
+              {['Pemesanan Custom', 'Catering Acara', 'Kemitraan', 'FAQ Pemesanan'].map((link) => (
+                <li key={link}>
+                  <a href="#" className="text-pink-100/70 hover:text-white text-sm transition-colors">{link}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+        </div>
+
+        {/* Copyright Bar */}
+        <div className="border-t border-pink-900/50 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+          <p className="text-pink-100/50 text-xs">
+            © {new Date().getFullYear()} Jessyco Artisan Bakery. All rights reserved.
+          </p>
+          <div className="flex gap-6 text-xs text-pink-100/50">
+            <a href="#" className="hover:text-pink-300">Privacy Policy</a>
+            <a href="#" className="hover:text-pink-300">Terms of Service</a>
+          </div>
+        </div>
+      </div>
     </footer>
   );
 }
@@ -424,12 +501,123 @@ function WhatsAppBtn() {
     >
       <span className="absolute inset-0 rounded-full bg-green-400/40 animate-ping" />
       <span className="absolute right-full mr-3 bg-white text-stone-700 text-xs font-semibold px-3 py-2 rounded-xl shadow-lg whitespace-nowrap opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-200">
-        Mau order? 🍞
+        Ada Pertanyaan? 🍞
       </span>
       <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
         <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
       </svg>
     </motion.a>
+  );
+}
+
+/* ─── Contact Section ───────────────────────────────────── */
+function KontakSection() {
+  return (
+    <section id="kontak" className="relative py-24 bg-white overflow-hidden">
+      {/* Ornamen Background */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-pink-50 rounded-full blur-3xl opacity-50 -z-10 translate-x-1/3 -translate-y-1/3" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-pink-100 rounded-full blur-3xl opacity-30 -z-10 -translate-x-1/2 translate-y-1/3" />
+
+      <div className="max-w-7xl mx-auto px-8 lg:px-14">
+        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
+          
+          {/* Info Text */}
+          <div className="w-full lg:w-1/2">
+            <motion.span 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-xs font-bold text-pink-500 uppercase tracking-[3px] block mb-4"
+            >
+              Kunjungi Kami
+            </motion.span>
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="font-serif text-4xl lg:text-5xl font-bold text-pink-950 tracking-tight mb-6"
+            >
+              Mari Berbincang
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-stone-500 font-light leading-relaxed mb-10 max-w-md"
+            >
+              Punya pertanyaan tentang pesanan khusus, *catering*, atau sekadar ingin menyapa? Jangan ragu untuk menghubungi kami. Dapur kami selalu terbuka untuk Anda.
+            </motion.p>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="space-y-6"
+            >
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-full bg-pink-50 flex items-center justify-center shrink-0 text-pink-500">
+                  <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="text-pink-950 font-bold text-sm mb-1">Lokasi Dapur</h4>
+                  <p className="text-sm text-stone-500">Jl. Pemuda No. 123, Semarang<br/>Jawa Tengah, Indonesia 50132</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-full bg-pink-50 flex items-center justify-center shrink-0 text-pink-500">
+                  <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="text-pink-950 font-bold text-sm mb-1">Jam Operasional</h4>
+                  <p className="text-sm text-stone-500">Senin - Sabtu: 07.00 - 20.00 WIB<br/>Minggu: 08.00 - 18.00 WIB</p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Form UI (Modern Glassmorphism) */}
+          <div className="w-full lg:w-1/2">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="bg-white/60 backdrop-blur-xl border border-pink-100 p-8 md:p-10 rounded-[2rem] shadow-[0_20px_60px_rgba(236,72,153,0.08)]"
+            >
+              <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-stone-500 uppercase ml-2">Nama</label>
+                    <input type="text" placeholder="John Doe" className="w-full bg-white/50 border border-stone-200 text-sm px-5 py-4 rounded-2xl focus:outline-none focus:border-pink-400 focus:ring-2 focus:ring-pink-100 transition-all" />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-stone-500 uppercase ml-2">Email</label>
+                    <input type="email" placeholder="john@email.com" className="w-full bg-white/50 border border-stone-200 text-sm px-5 py-4 rounded-2xl focus:outline-none focus:border-pink-400 focus:ring-2 focus:ring-pink-100 transition-all" />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-xs font-bold text-stone-500 uppercase ml-2">Pesan</label>
+                  <textarea rows={4} placeholder="Tulis pesan Anda di sini..." className="w-full bg-white/50 border border-stone-200 text-sm px-5 py-4 rounded-2xl focus:outline-none focus:border-pink-400 focus:ring-2 focus:ring-pink-100 transition-all resize-none"></textarea>
+                </div>
+                <button type="submit" className="w-full bg-pink-600 text-white font-semibold py-4 rounded-2xl hover:bg-pink-700 transition-colors shadow-lg shadow-pink-600/30">
+                  Kirim Pesan
+                </button>
+              </form>
+            </motion.div>
+          </div>
+
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -441,6 +629,7 @@ export default function Home() {
       <HeroSection />
       <TentangSection />
       <MenuSection />
+      <KontakSection />
       <Footer />
       <WhatsAppBtn />
     </div>
