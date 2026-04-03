@@ -77,9 +77,11 @@ export default function Navbar() {
           <Link href="#kontak" className="hover:text-pink-600 transition-colors">Kontak</Link>
         </div>
 
-        {/* --- BAGIAN KANAN: Tombol Keranjang --- */}
         <div className="relative z-10 flex items-center">
-          <button
+          <a
+            href="https://bakery-commerce--ubuntukiki26.replit.app"
+            target="_blank"
+            rel="noopener noreferrer"
             className={`flex items-center group rounded-full ${smoothAnim} ${
               isScrolled
                 ? "bg-pink-600 text-white px-5 py-2 shadow-md hover:bg-pink-700 hover:scale-105 active:scale-95"
@@ -100,12 +102,14 @@ export default function Navbar() {
             </svg>
             <span
               className={`font-semibold overflow-hidden whitespace-nowrap ${smoothAnim} ${
-                isScrolled ? "max-w-[100px] opacity-100 ml-2 text-sm" : "max-w-0 opacity-0 ml-0 text-base"
+                isScrolled
+                  ? "max-w-[100px] opacity-100 ml-2 text-sm"
+                  : "max-w-0 opacity-0 ml-0 text-base"
               }`}
             >
               Keranjang
             </span>
-          </button>
+          </a>
         </div>
       </nav>
     </div>
